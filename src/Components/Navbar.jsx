@@ -1,4 +1,8 @@
 /* eslint-disable no-unused-vars */
+import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
+import { IoMdAddCircle } from "react-icons/io";
+import { MdMenuBook } from "react-icons/md";
 import {
   // useContext,
   useEffect,
@@ -20,7 +24,7 @@ const Navbar = () => {
   // const { logOut } = useContext(AuthContext)
   const { user, signOutUser } = useAuth();
   // console.log(user?.email, user?.displayName,user?.photoURL);
-  const handleSignOut = () => {
+  const handleLogOut = () => {
     signOutUser()
     .then(()=>{
       navigate('/login');
@@ -30,8 +34,7 @@ const Navbar = () => {
     }
     )
   };
-
-  const links = (
+  const linkss = (
     <>
       <li>
         <NavLink to={"/"}>Home</NavLink>
@@ -47,12 +50,34 @@ const Navbar = () => {
       </li>
       {/* { user && <><li><NavLink to={'/dashboard'}>Dashboard</NavLink></li></>} */}
       <li>
-        <NavLink to={"/myArticles"}>MY Articles</NavLink>
+        <NavLink to={"/tasksAnother"}>Tasks</NavLink>
       </li>
       <li>
-        <NavLink to={"/premiumArticles"}>Premium Articles</NavLink>
+        <NavLink to={"/addTasksAnother"}>Add Tasks</NavLink>
       </li>
     </>
+  )
+  const links = (
+    <>
+              <NavLink
+                className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
+                to="/tasksAnother"
+              >
+                <FaHome className="text-xl" /> <span>Home</span>
+              </NavLink>
+              <NavLink
+                className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
+                to="/addTasksAnother"
+              >
+                <IoMdAddCircle className="text-xl" /> <span>Add Task</span>
+              </NavLink>
+              <NavLink
+                className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
+                to="/manage-tasks"
+              >
+                <MdMenuBook className="text-xl" /> <span>Manage Tasks</span>
+              </NavLink>
+            </>
   );
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -110,49 +135,55 @@ const Navbar = () => {
             className="flex gap-2 items-center bg-orange-200 dark:bg-orange-200/20 dark:text-white p-2 rounded-lg"
           >
             {/* <img className='w-auto h-7 rounded-md' src={news_logo} alt='' /> */}
-            <span className="font-bold">Newspaper</span>
+            <span>Task</span> <span className="text-indigo-600">Flow</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
         </div>
         <div className="navbar-end">
-          {user ? (
-            <>
-              <Link to={"dashboard/myProfile"}>
-                <img
-                  src={user?.photoURL}
-                  className="w-14 h-14 rounded-full mr-3"
-                  alt=""
-                />
-              </Link>{" "}
-              <button onClick={handleSignOut} className="btn">
-                Logout <FaSignOutAlt />
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="mr-4 text-teal-500 btn" to={"/register"}>
-                Register
+        {user ? (
+          <div className="flex gap-2 items-center">
+            <figure className="w-12 h-12 avatar avatar-online">
+              <img
+                src={user?.photoURL}
+                alt={user?.displayName}
+                className="w-full h-full border-4 border-indigo-500 rounded-full"
+                referrerPolicy="no-referrer"
+              />
+            </figure>
+
+            <button
+              onClick={handleLogOut}
+              className="bg-rose-500 cursor-pointer py-2 px-5 text-white hover:bg-rose-700 rounded-md font-bold flex gap-1 items-center"
+            >
+              <BiSolidLogOutCircle className="text-2xl" />
+              <span className="text-base">Log Out</span>
+            </button>
+          </div>
+        ) : (
+          <>
+            <button className="bg-indigo-500 py-2 px-5 text-white hover:bg-indigo-700 rounded-md font-bold">
+              <Link to="/login" className="flex gap-1 items-center">
+                <span className="text-base">Login</span>
+                <BiSolidLogInCircle className="text-xl" />
               </Link>
-              <Link to={"/login"} className="btn">
-                Login
-              </Link>
-            </>
-          )}
-          <Link to={"/login"} className="btn">
+            </button>
+          </>
+        )}
+          {/* <Link to={"/login"} className="btn">
             Login
           </Link>
           <Link to={"/register"} className="btn">
             Register
-          </Link>
+          </Link> */}
         </div>
-        <button
+        {/* <button
           onClick={toggleTheme}
           className="p-3 text-2xl  rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black"
         >
           {isDarkMode ? "Light" : "dark"}
-        </button>
+        </button> */}
       </div>
     </div>
   );
