@@ -19,7 +19,7 @@ const AllTask = () => {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(
+      await axios.delete(
         `${import.meta.env.VITE_API_URL}/tasks/${id}`
       );
       toast.success("Data Deleted Successfully!!!");
