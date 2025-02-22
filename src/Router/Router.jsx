@@ -19,10 +19,10 @@ export const router = createBrowserRouter([
       errorElement: <ErrorPage/>,
       children: [
         {
-            path: "/",
-            element: <Home/>,
-            
+          path: "/",
+          element: <Home/>
         },
+        
         {
             path: "/addTask",
             element: <AddTaskManager/>
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
             element: <AllTask/>,            
         },
         {
-            path: '/tasksAnother',
+            path: '/newTask',
             element: <Tasks/>,            
         },
         {

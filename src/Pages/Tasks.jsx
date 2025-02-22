@@ -109,8 +109,8 @@ const Tasks = () => {
   if (isPending) return <p className="text-5xl">Loading...</p>;
 
   return (
-    <div className="lg:w-[90%] w-11/12 mx-auto bg-[#3A7D44]">
-      <h1 className="md:text-4xl text-3xl text-center text-white py-5 font-bold mb-3">
+    <div className="lg:w-[90%] w-11/12 mx-auto bg-gradient-to-r from-yellow-400/80 to-yellow-600/80 dark:from-yellow-400/50 dark:to-yellow-600/50">
+      <h1 className="md:text-4xl text-3xl text-center text-black py-5 font-bold mb-3">
         Task Board
       </h1>
 
@@ -123,9 +123,9 @@ const Tasks = () => {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="card bg-[#27667B] shadow-md p-4 rounded-md"
+                  className="card bg-yellow-400/20 shadow-md p-4 rounded-md"
                 >
-                  <h2 className="text-xl font-bold text-white">{category}</h2>
+                  <h2 className="text-xl font-bold text-black">{category}</h2>
                   <div>
                     {tasks
                       .filter((task) => task?.Category === category)
@@ -140,7 +140,7 @@ const Tasks = () => {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className="card-body space-y-1 bg-[#3A7D44] mt-4 border border-neutral-300 hover:scale-105 hover:shadow-xl rounded-md p-3"
+                              className="card-body space-y-1 bg-indigo-600/40   mt-4 border border-neutral-300 hover:scale-105 hover:shadow-xl rounded-md p-3"
                             >
                               <div className="flex justify-between items-center mb-1">
                                 <img
@@ -150,22 +150,22 @@ const Tasks = () => {
                                   referrerPolicy="no-referrer"
                                 />
 
-                                <h4 className="text-base text-white/90 font-semibold">
+                                <h4 className="text-base text-black/90 font-semibold">
                                   {user?.displayName}
                                 </h4>
                               </div>
-                              <h3 className="text-white/90 font-bold flex gap-2 items-center">
+                              <h3 className="text-black/90 font-bold flex gap-2 items-center">
                                 <MdTitle className="text-lg" />{" "}
-                                <span className="text-base">{task?.Title}</span>
+                                <span className="text-black">{task?.Title}</span>
                               </h3>
-                              <p className="text-white/80 font-semibold flex gap-2 items-center">
+                              <p className="text-black/80 font-semibold flex gap-2 items-center">
                                 <MdDescription className="text-lg" />
                                 <span className="text-sm">
                                   {task?.Description}
                                 </span>
                               </p>
 
-                              <p className="flex gap-2 items-center font-semibold text-white/80">
+                              <p className="flex gap-2 items-center font-semibold text-black/80">
                                 <FaCalendarWeek className="text-base" />{" "}
                                 <span className="text-sm">
                                   {new Date(task?.TimeStamp).toLocaleString(

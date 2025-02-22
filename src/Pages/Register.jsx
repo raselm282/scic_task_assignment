@@ -1,195 +1,254 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import bgImg from "../assets/register_marathon.avif";
-// import logo from '../assets/image/logo_marathon.png'
-// import AuthContext from "../context/AuthContext/AuthContext";
+// import { FaEye, FaEyeSlash, FaRegistered } from "react-icons/fa";
+// import { FcGoogle } from "react-icons/fc";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useContext, useState } from "react";
+// import axios from "axios";
+// // import Swal from "sweetalert2";
 // import toast from "react-hot-toast";
-// import { HelmetProvider,Helmet } from 'react-helmet-async';
-import AuthContext from "../AuthContext/AuthContext";
-// https://i.ibb.co.com/cyzfmdQ/cat-1.jpg
+// import AuthContext from "../AuthContext/AuthContext";
 
-const Register = () => {
-  const navigate = useNavigate();
-  //   const { signInWithGoogle, createUser, updateUserProfile, setUser } =
-  const { signInWithGoogle } = useContext(AuthContext);
+// const Register = () => {
+//   const { createUser, updateUserInfo, loginWithGoogle } =
+//     useContext(AuthContext);
+//   const [hidePassword, setHidePassword] = useState(true);
+//   const [errorMessage, setErrorMessage] = useState("");
+//   const navigate = useNavigate();
+//   const from = location?.state?.from?.pathname || "/";
 
-  //   const handleSignUp = async (e) => {
-  //     e.preventDefault();
-  //     const form = e.target;
-  //     const email = form.email.value;
-  //     const name = form.name.value;
-  //     const photo = form.photo.value;
-  //     const pass = form.password.value;
-  //     try {
-  //       //2. User Registration
-  //       const result = await createUser(email, pass);
-  //       await updateUserProfile(name, photo);
-  //       setUser({ ...result.user, photoURL: photo, displayName: name });
-  //       toast.success("Signup Successful");
-  //     //   navigate("/");
-  //     } catch (err) {
-  //       toast.error(err?.message);
-  //     }
-  //   };
+//   const handleRegister = async (e) => {
+//     e.preventDefault();
 
-  // Google Signin
-  const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle();
+//     const name = e.target.name.value;
+//     const email = e.target.email.value;
+//     const photo = e.target.photoURL.value;
+//     const password = e.target.password.value;
 
-      alert("Signin Successful");
-      navigate("/");
-    } catch (err) {
-      alert(err?.message);
-    }
-  };
-  return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      {/* <HelmetProvider>
-        <Helmet>
-          <title>Register</title>
-        </Helmet>
-      </HelmetProvider>       */}
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
-        <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          {/* <div className="flex justify-center mx-auto">
-            <img className="w-auto h-7 sm:h-8" src={logo} alt="lo" />
-          </div> */}
+//     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
-          <p className="mt-3 text-xl text-center text-gray-600 ">
-            Get Your Free Account Now.
-          </p>
+//     if (!passwordRegex.test(password)) {
+//       setErrorMessage(
+//         "Password must have an Uppercase, a lowercase and 6 character or long"
+//       );
+//       return;
+//     }
 
-          <div
-            onClick={handleGoogleSignIn}
-            className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
-          >
-            <div className="px-4 py-2">
-              <svg className="w-6 h-6" viewBox="0 0 40 40">
-                <path
-                  d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                  fill="#FFC107"
-                />
-                <path
-                  d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
-                  fill="#FF3D00"
-                />
-                <path
-                  d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
-                  fill="#4CAF50"
-                />
-                <path
-                  d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                  fill="#1976D2"
-                />
-              </svg>
-            </div>
+//     if (name.length < 5) {
+//       toast.error("Name must be at least 5 character or long")
+//       // Swal.fire({
+//       //   position: "center",
+//       //   icon: "error",
+//       //   title: "Name must be at least 5 character or long",
+//       //   showConfirmButton: false,
+//       //   timer: 3000,
+//       // });
+//       return;
+//     }
 
-            <span className="w-5/6 px-4 py-3 font-bold text-center">
-              Sign in with Google
-            </span>
-          </div>
+//     try {
+//       // Create an user
+//       const userCredential = await createUser(email, password);
+//       const user = userCredential.user;
 
-          {/* <div className="flex items-center justify-between mt-4">
-            <span className="w-1/5 border-b  lg:w-1/4"></span>
+//       // Update user name and photo
+//       await updateUserInfo(name, photo);
 
-            <div className="text-xs text-center text-gray-500 uppercase  hover:underline">
-              or Registration with email
-            </div>
+//       // Prepare data for saving in the database
+//       const userData = {
+//         userID: user.uid,
+//         name: name, // Use manually since updateProfile doesn't return user
+//         email: user.email,
+//         photo: photo, // Use manually
+//         createdAt: new Date().toISOString(),
+//       };
 
-            <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
-          </div> */}
-          {/* <form onSubmit={handleSignUp}>
-            <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
-                htmlFor="name"
-              >
-                Username
-              </label>
-              <input
-                id="name"
-                autoComplete="name"
-                name="name"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="text"
-              />
-            </div>
-            <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
-                htmlFor="photo"
-              >
-                Photo URL
-              </label>
-              <input
-                id="photo"
-                autoComplete="photo"
-                name="photo"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="text"
-              />
-            </div>
-            <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
-                htmlFor="LoggingEmailAddress"
-              >
-                Email Address
-              </label>
-              <input
-                id="LoggingEmailAddress"
-                autoComplete="email"
-                name="email"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="email"
-              />
-            </div>
+//       // Store user data in the database
+//       const dbResponse = await axios.post(
+//         `${import.meta.env.VITE_API_URL}/user`,
+//         userData
+//       );
 
-            <div className="mt-4">
-              <div className="flex justify-between">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 "
-                  htmlFor="loggingPassword"
-                >
-                  Password
-                </label>
-              </div>
+//       if (dbResponse.data.insertedId) {
+//         e.target.reset();
+//         toast.success(`${user?.displayName} is successfully logged in via Google`)
 
-              <input
-                id="loggingPassword"
-                autoComplete="current-password"
-                name="password"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
-              />
-            </div>
-            <div className="mt-6">
-              <button
-                type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-              >
-                Sign Up
-              </button>
-            </div>
-          </form> */}
+//         // Swal.fire({
+//         //   position: "center",
+//         //   icon: "success",
+//         //   title: `${name} is successfully registered`,
+//         //   showConfirmButton: false,
+//         //   timer: 3000,
+//         // });
+//         navigate(from, { replace: true });
+//       }
+//     } catch (error) {
+//       toast.error(error.response?.data?.message ||
+//         error.message ||
+//         "Something went wrong")
+//       // Swal.fire({
+//       //   position: "center",
+//       //   icon: "error",
+//       //   title:
+//       //     error.response?.data?.message ||
+//       //     error.message ||
+//       //     "Something went wrong",
+//       //   showConfirmButton: false,
+//       //   timer: 3000,
+//       // });
+//     }
+//   };
 
-          {/* <div className="flex items-center mt-4">
-           <p> have an account   {" "}
-            <Link to="/login" className=" text-green-500 hover:underline">
-              Login
-            </Link></p>
-          </div> */}
-        </div>
-        <div
-          className="hidden bg-cover bg-center lg:block lg:w-1/2"
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
-      </div>
-    </div>
-  );
-};
+//   const handleGoogleLogin = async () => {
+//     try {
+//       const result = await loginWithGoogle();
+//       const user = await result.user;
 
-export default Register;
+//       toast.success(`${user?.displayName} is successfully logged in via Google`)
+//       // Swal.fire({
+//       //   position: "center",
+//       //   icon: "success",
+//       //   title: `${user?.displayName} is successfully logged in via Google`,
+//       //   showConfirmButton: false,
+//       //   timer: 3000,
+//       // });
+//       navigate(from, { replace: true });
+
+//       // Prepare data for saving in the database
+//       const userData = {
+//         userID: user?.uid,
+//         name: user?.displayName,
+//         email: user?.email,
+//         photo: user?.photoURL,
+//         createdAt: new Date().toISOString(),
+//       };
+
+//       // Insert user data in the database
+//       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user`, userData);
+//     } catch (error) {
+//       toast.error(error.response?.data?.message ||
+//         error.message ||
+//         "Something went wrong")
+//       // Swal.fire({
+//       //   position: "center",
+//       //   icon: "error",
+//       //   title:
+//       //     error.response?.data?.message ||
+//       //     error.message ||
+//       //     "Something went wrong",
+//       //   showConfirmButton: false,
+//       //   timer: 3000,
+//       // });
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2 className="md:text-4xl text-3xl font-bold pt-10 text-center">
+//         Register Form!
+//       </h2>
+//       <div className="md:w-full w-11/12 mx-auto flex justify-center items-center pt-4 pb-12">
+//         <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-md border border-gray-300">
+//           <form onSubmit={handleRegister} className="card-body">
+//             <fieldset className="fieldset">
+//               <label className="fieldset-label">
+//                 <span className="font-bold">Name</span>
+//               </label>
+//               <input
+//                 type="text"
+//                 name="name"
+//                 placeholder="Type your Name"
+//                 className="input w-full"
+//                 required
+//               />
+//             </fieldset>
+//             <fieldset className="fieldset">
+//               <label className="fieldset-label">
+//                 <span className="font-bold">Email</span>
+//               </label>
+//               <input
+//                 type="email"
+//                 name="email"
+//                 placeholder="Type your Email"
+//                 className="input w-full"
+//                 required
+//               />
+//             </fieldset>
+//             <fieldset className="fieldset">
+//               <label className="fieldset-label">
+//                 <span className="font-bold">Photo-URL</span>
+//               </label>
+//               <input
+//                 type="text"
+//                 name="photoURL"
+//                 placeholder="Provide a Photo URL"
+//                 className="input w-full"
+//                 required
+//               />
+//             </fieldset>
+//             <fieldset className="fieldset relative">
+//               <label className="fieldset-label">
+//                 <span className="font-bold">Password</span>
+//               </label>
+//               <input
+//                 type={hidePassword ? "password" : "text"}
+//                 name="password"
+//                 placeholder="Type your Password"
+//                 className="input w-full"
+//                 required
+//               />
+
+//               <button
+//                 onClick={() => setHidePassword(!hidePassword)}
+//                 className="absolute btn btn-xs top-9 right-3"
+//                 type="button"
+//               >
+//                 {hidePassword ? <FaEyeSlash /> : <FaEye />}
+//               </button>
+//             </fieldset>
+
+//             <div>
+//               {errorMessage && (
+//                 <p className="text-rose-500 text-center font-bold mt-5">
+//                   {errorMessage}
+//                 </p>
+//               )}
+//             </div>
+
+//             <div className="mt-4">
+//               <button className="w-full flex gap-2 items-center btn bg-rose-500 hover:bg-rose-700 text-base text-white font-bold">
+//                 <FaRegistered className="text-xl" /> <span>Register</span>
+//               </button>
+//             </div>
+//           </form>
+
+//           <p className="text-gray-700 font-bold text-center">
+//             Already have an Account? Please{" "}
+//             <Link to="/login" className="text-indigo-500 font-bold">
+//               Login
+//             </Link>
+//           </p>
+
+//           <div className="divider w-4/5 mx-auto font-medium">Or</div>
+
+//           <div className="w-4/5 mx-auto pb-8">
+//             <button
+//               onClick={handleGoogleLogin}
+//               className="btn w-full flex gap-3 justify-center items-center"
+//             >
+//               <FcGoogle className="text-2xl" />{" "}
+//               <span className="text-base text-gray-800 font-bold">
+//                 Login with Google
+//               </span>
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Register;
+
+
+
+
+

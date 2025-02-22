@@ -2,22 +2,20 @@
 import { useEffect, useState } from 'react'
 import {
   GoogleAuthProvider,
-  // createUserWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   // getAuth,
   onAuthStateChanged,
-  // signInWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  // updateProfile,
+  updateProfile,
 } from 'firebase/auth'
-// import { auth } from '../Firebase/firebase.config'
 import AuthContext from './AuthContext'
 import { auth } from '../Firebase/firebase.init'
 // import useAxiosPublic from '../Hooks/useAxiosPublic'
 // import AuthContext from './AuthContext'
 // import axios from 'axios'
 
-// eslint-disable-next-line react-refresh/only-export-components
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
@@ -25,17 +23,17 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 //   const axiosPublic = useAxiosPublic()
 
-  // const createUser = (email, password) => {
-  //   setLoading(true)
-  //   return createUserWithEmailAndPassword(auth, email, password)
-  // }
+  const createUser = (email, password) => {
+    setLoading(true)
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
 
-  // const signIn = (email, password) => {
-  //   setLoading(true)
-  //   return signInWithEmailAndPassword(auth, email, password)
-  // }
+  const loginWithEmailPassword = (email, password) => {
+    setLoading(true)
+    return signInWithEmailAndPassword(auth, email, password)
+  }
 
-  const signInWithGoogle = () => {
+  const loginWithGoogle = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
   }
@@ -46,14 +44,14 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // const updateUserProfile = (name, photo, phone) => {
-  //   return updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photo,
-  //     phoneNumber: phone,
-  //     // address: address,
-  //   })
-  // }
+  const updateUserInfo = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+      // phoneNumber: phone,
+      // address: address,
+    })
+  }
 
   // onAuthStateChange
   useEffect(() => {
@@ -88,11 +86,11 @@ const AuthProvider = ({ children }) => {
     setUser,
     loading,
     setLoading,
-    signInWithGoogle,
     signOutUser,
-    // createUser,
-    // signIn,
-    // updateUserProfile,
+    createUser,
+    updateUserInfo,
+    loginWithGoogle,
+    loginWithEmailPassword
   }
 
   return (
