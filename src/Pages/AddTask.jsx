@@ -59,7 +59,7 @@ const AddTask = () => {
         //   showConfirmButton: false,
         //   timer: 2000,
         // });
-        navigate("/tasksAnother");
+        navigate("/newTask");
       }
     } catch (error) {
       toast.error(error.response?.data?.message ||

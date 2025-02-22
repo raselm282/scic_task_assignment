@@ -53,7 +53,7 @@ const UpdateNewTask = () => {
         toast.success("Successfully updated the task");
 
         refetch();
-        navigate("/tasksAnother");
+        navigate("/newTask");
       }
     } catch (error) {
       toast.error(
