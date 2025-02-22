@@ -25,27 +25,26 @@
 
 
 
-# 2️⃣ Install Dependencies
+## 2️⃣ Install Dependencies
 npm install
 
-# 3️⃣ Set Up Environment Variables
-# Create a .env file in the root directory and add Firebase & database configurations.
+## 3️⃣ Set Up Environment Variables
+## Create a .env file in the root directory and add Firebase & database configurations.
 
-# 4️⃣ Start the Development Server
+## 4️⃣ Start the Development Server
 npm run dev
 
-# 5️⃣ Start the Backend Server (If applicable)
+## 5️⃣ Start the Backend Server (If applicable)
 cd backend
 npm install
 npm start
 
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
-
-Frontend:   Vite.js, React, Tailwind CSS  
-Backend:    Node.js, Express.js, MongoDB  
-State:      TanStack Query  
-Auth:       Firebase Authentication  
-Real-time:  WebSockets  
-Deployment: Vercel (Frontend), Render/Heroku (Backend)  
+**Frontend:**   Vite.js, React, Tailwind CSS  
+**Backend:**    Node.js, Express.js, MongoDB  
+**State:**      TanStack Query  
+**Auth:**       Firebase Authentication  
+**Real-time:**  WebSockets  
+**Deployment:** Vercel (Frontend), Render/Heroku (Backend)  
