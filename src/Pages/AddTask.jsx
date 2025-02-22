@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext/AuthContext";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 // import { AuthContext } from "../../providers/AuthProvider";
 
 const AddTask = () => {
@@ -50,26 +51,30 @@ const AddTask = () => {
       );
 
       if (response.data.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `${Title} is successfully added`,
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        toast.success(`${Title} is successfully added`)
+        // Swal.fire({
+        //   position: "center",
+        //   icon: "success",
+        //   title: `${Title} is successfully added`,
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // });
         navigate("/tasksAnother");
       }
     } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title:
-          error.response?.data?.message ||
-          error.message ||
-          "Something went wrong",
-        showConfirmButton: false,
-        timer: 5000,
-      });
+      toast.error(error.response?.data?.message ||
+        error.message ||
+        "Something went wrong")
+      // Swal.fire({
+      //   position: "center",
+      //   icon: "error",
+      //   title:
+      //     error.response?.data?.message ||
+      //     error.message ||
+      //     "Something went wrong",
+      //   showConfirmButton: false,
+      //   timer: 5000,
+      // });
     }
   };
 
