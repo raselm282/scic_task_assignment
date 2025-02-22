@@ -47,4 +47,4 @@ npm start
 **State:**      TanStack Query  
 **Auth:**       Firebase Authentication  
 **Real-time:**  WebSockets  
-**Deployment:** Vercel (Frontend), Render/Heroku (Backend)  
+**Deployment:** Vercel (Backend), Firebase (Frontend)  
