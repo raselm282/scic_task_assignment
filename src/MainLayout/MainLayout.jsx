@@ -10,7 +10,6 @@ const MainLayout = () => {
         <div className="max-w-full mx-auto  dark:bg-gray-900 dark:text-white">
         <Toaster position="top-right" reverseOrder={false} />
         <Navbar></Navbar>
-        {/* <NavigationBar/> */}
         <div className="max-w-[90%] mx-auto">
         <div className="min-h-[calc(100vh-292px)] py-7">
           <Outlet />

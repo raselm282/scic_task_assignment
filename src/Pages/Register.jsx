@@ -6,6 +6,7 @@ import axios from "axios";
 // import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import AuthContext from "../AuthContext/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser, updateUserInfo, loginWithGoogle } =
@@ -33,7 +34,7 @@ const Register = () => {
     }
 
     if (name.length < 5) {
-      toast.error("Name must be at least 5 character or long")
+      toast.error("Name must be at least 5 character or long");
       // Swal.fire({
       //   position: "center",
       //   icon: "error",
@@ -69,7 +70,9 @@ const Register = () => {
 
       if (dbResponse.data.insertedId) {
         e.target.reset();
-        toast.success(`${user?.displayName} is successfully logged in via Google`)
+        toast.success(
+          `${user?.displayName} is successfully logged in via Google`
+        );
 
         // Swal.fire({
         //   position: "center",
@@ -81,9 +84,9 @@ const Register = () => {
         navigate(from, { replace: true });
       }
     } catch (error) {
-      toast.error(error.response?.data?.message ||
-        error.message ||
-        "Something went wrong")
+      toast.error(
+        error.response?.data?.message || error.message || "Something went wrong"
+      );
       // Swal.fire({
       //   position: "center",
       //   icon: "error",
@@ -102,7 +105,9 @@ const Register = () => {
       const result = await loginWithGoogle();
       const user = await result.user;
 
-      toast.success(`${user?.displayName} is successfully logged in via Google`)
+      toast.success(
+        `${user?.displayName} is successfully logged in via Google`
+      );
       // Swal.fire({
       //   position: "center",
       //   icon: "success",
@@ -124,9 +129,9 @@ const Register = () => {
       // Insert user data in the database
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user`, userData);
     } catch (error) {
-      toast.error(error.response?.data?.message ||
-        error.message ||
-        "Something went wrong")
+      toast.error(
+        error.response?.data?.message || error.message || "Something went wrong"
+      );
       // Swal.fire({
       //   position: "center",
       //   icon: "error",
@@ -142,6 +147,9 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Tasks SignUp</title>
+      </Helmet>
       <h2 className="md:text-4xl text-3xl font-bold pt-10 text-center">
         Register Form!
       </h2>
@@ -247,8 +255,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
-
-

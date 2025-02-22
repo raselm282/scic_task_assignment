@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 // import Loading from "../../components/Loading/Loading";
 // import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 const UpdateNewTask = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const UpdateNewTask = () => {
     },
   });
 
-//   console.log("newTask...",task);
+  //   console.log("newTask...",task);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -62,6 +63,9 @@ const UpdateNewTask = () => {
   };
   return (
     <div className="hero pt-20 pb-16">
+      <Helmet>
+        <title>Task Update</title>
+      </Helmet>
       <div className="lg:w-3/5 w-11/12 mx-auto flex-col">
         <div className="text-center pb-5">
           <h1 className="lg:text-5xl md:text-4xl text-3xl font-bold">

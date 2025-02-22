@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../AuthContext/AuthContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const location = useLocation();
@@ -20,8 +21,10 @@ const Login = () => {
     try {
       const result = await loginWithGoogle();
       const user = await result.user;
-      toast.success(`${user?.displayName} is successfully logged in via Google`)
-     
+      toast.success(
+        `${user?.displayName} is successfully logged in via Google`
+      );
+
       // Swal.fire({
       //   position: "center",
       //   icon: "success",
@@ -43,9 +46,9 @@ const Login = () => {
       // Insert user data in the database
       await axios.post(`${import.meta.env.VITE_API_URL}/user`, userData);
     } catch (error) {
-      toast.error(error.response?.data?.message ||
-        error.message ||
-        "Something went wrong")
+      toast.error(
+        error.response?.data?.message || error.message || "Something went wrong"
+      );
       // Swal.fire({
       //   position: "center",
       //   icon: "error",
@@ -71,7 +74,7 @@ const Login = () => {
 
       if (user) {
         e.target.reset();
-        toast.success(`${user?.displayName} is successfully logged in`)
+        toast.success(`${user?.displayName} is successfully logged in`);
 
         // Swal.fire({
         //   position: "center",
@@ -83,9 +86,9 @@ const Login = () => {
         navigate(from, { replace: true });
       }
     } catch (error) {
-      toast.error(error.response?.data?.message ||
-        error.message ||
-        "Something went wrong")
+      toast.error(
+        error.response?.data?.message || error.message || "Something went wrong"
+      );
       // Swal.fire({
       //   position: "center",
       //   icon: "error",
@@ -101,27 +104,30 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Tasks Login</title>
+      </Helmet>
       <h2 className="w-4/5 mx-auto md:text-4xl text-3xl font-bold pt-14 text-center">
         Login Form!
       </h2>
       <div className="md:w-full w-11/12 mx-auto flex justify-center items-center pt-4 pb-12">
         <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-md border border-gray-300">
-        <div>
-              <button
-                onClick={handleGoogleLogin}
-                className="btn w-full flex gap-3 justify-center items-center"
-              >
-                <FcGoogle className="text-2xl" />
-                <span className="text-base text-gray-800 font-bold">
-                  Login with Google
-                </span>
-              </button>
-            </div>
-            <div className="divider text-gray-600 font-medium">
-              Or Login with Email
-            </div>
+          <div>
+            <button
+              onClick={handleGoogleLogin}
+              className="btn w-full flex gap-3 justify-center items-center"
+            >
+              <FcGoogle className="text-2xl" />
+              <span className="text-base text-gray-800 font-bold">
+                Login with Google
+              </span>
+            </button>
+          </div>
+          <div className="divider text-gray-600 font-medium">
+            Or Login with Email
+          </div>
           <form onSubmit={handleLoginWithEmailPass} className="card-body">
-              <fieldset className="fieldset">
+            <fieldset className="fieldset">
               <label className="fieldset-label">
                 <span className="font-bold">Email</span>
               </label>
@@ -153,7 +159,10 @@ const Login = () => {
               </button>
             </fieldset>
             <div className="mt-4">
-              <button type="submit" className="w-full flex gap-2 items-center btn bg-indigo-500 hover:bg-indigo-700 text-base text-white font-bold">
+              <button
+                type="submit"
+                className="w-full flex gap-2 items-center btn bg-indigo-500 hover:bg-indigo-700 text-base text-white font-bold"
+              >
                 <span>Login Now</span>
                 <BiSolidLogInCircle className="text-xl" />
               </button>
@@ -173,6 +182,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-

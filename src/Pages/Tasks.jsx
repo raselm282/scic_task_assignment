@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import AuthContext from "../AuthContext/AuthContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Tasks = () => {
   const { user } = useContext(AuthContext);
@@ -106,10 +107,13 @@ const Tasks = () => {
     ));
   };
 
-  if (isPending) return <p className="text-5xl">Loading...</p>;
+  if (isPending) return <span className="loading loading-spinner loading-lg"></span>;
 
   return (
     <div className="lg:w-[90%] w-11/12 mx-auto bg-gradient-to-r from-yellow-400/80 to-yellow-600/80 dark:from-yellow-400/50 dark:to-yellow-600/50">
+      <Helmet>
+        <title>Tasks</title>
+      </Helmet>
       <h1 className="md:text-4xl text-3xl text-center text-black py-5 font-bold mb-3">
         Task Board
       </h1>

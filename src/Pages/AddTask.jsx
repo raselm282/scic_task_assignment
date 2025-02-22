@@ -4,11 +4,12 @@ import { IoMdAddCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext/AuthContext";
+import { Helmet } from "react-helmet-async";
 // import { AuthContext } from "../../providers/AuthProvider";
 
 const AddTask = () => {
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const handleAddTask = async (e) => {
     e.preventDefault();
 
@@ -74,6 +75,9 @@ const AddTask = () => {
 
   return (
     <div className="hero pt-20 pb-16">
+      <Helmet>
+        <title>Add Tasks</title>
+      </Helmet>
       <div className="lg:w-3/5 w-11/12 mx-auto flex-col">
         <div className="text-center pb-5">
           <h1 className="lg:text-5xl md:text-4xl text-3xl font-bold">

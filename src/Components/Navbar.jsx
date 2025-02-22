@@ -4,25 +4,18 @@ import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
+import { FaTasks } from "react-icons/fa";
 import {
   // useContext,
   useEffect,
   useState,
 } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-// import AuthContext from '../AuthContext/AuthContext';
 import useAuth from "../Hooks/useAuth";
-// import useAdmin from '../Hooks/useAdmin';
 import { FaSignOutAlt } from "react-icons/fa";
-// import news_logo from '../assets/Newspaper_logo.png'
-// import toast from 'react-hot-toast';
-// import { MdDarkMode} from "react-icons/md";
-// import { MdLightMode } from "react-icons/md";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  //   const [isAdmin] = useAdmin()
-  // const { logOut } = useContext(AuthContext)
   const { user, signOutUser } = useAuth();
   // console.log(user?.email, user?.displayName,user?.photoURL);
   const handleLogOut = () => {
@@ -59,12 +52,17 @@ const Navbar = () => {
   // );
   const links = (
     <>
-      <NavLink className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center" to={"/"}>Home</NavLink>
+      <NavLink
+        className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
+        to={"/"}
+      >
+        <FaHome className="text-xl" /> <span>Home</span>
+      </NavLink>
       <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
         to="/newTask"
       >
-        <FaHome className="text-xl" /> <span>Tasks</span>
+        <FaTasks className="text-xl" /> <span>Tasks</span>
       </NavLink>
       <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
@@ -72,12 +70,12 @@ const Navbar = () => {
       >
         <IoMdAddCircle className="text-xl" /> <span>Add Task</span>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         className="border border-neutral-300 hover:bg-neutral hover:text-white rounded-md px-4 py-2 flex gap-2 items-center"
         to="/manage-tasks"
       >
         <MdMenuBook className="text-xl" /> <span>Manage Tasks</span>
-      </NavLink>
+      </NavLink> */}
     </>
   );
 
