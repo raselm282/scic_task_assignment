@@ -23,12 +23,7 @@
    git clone https://github.com/raselm282/scic_task_assignment.git
    cd task-manager
 
-## 🚀 Installation  
 
-```sh
-# 1️⃣ Clone the Repository
-git clone https://github.com/raselm282/scic_task_assignment.git
-cd task-manager
 
 # 2️⃣ Install Dependencies
 npm install
